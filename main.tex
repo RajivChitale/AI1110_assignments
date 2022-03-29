@@ -1,0 +1,48 @@
+\documentclass[journal,11pt,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Assignment 1, AI1110}
+\author{Rajiv Chitale (cs21btech11051)}
+\date{29 March 2022}
+
+\pagenumbering{gobble}
+\begin{document}
+\maketitle
+
+\subsection*{ICSE 10th, 2017 Paper}
+\subsection*{Question 5 (a)}
+    Given matrix $B = \begin{bmatrix} 1 & 1 \\8 & 3 \end{bmatrix}$
+    . Find the matrix 
+    \\
+    X if,  $X = B^2-4B$. Hence solve for a and b 
+    \\
+    given $X \begin{bmatrix}a\\b\end{bmatrix}
+    = \begin{bmatrix} 5\\50 \end{bmatrix} $
+\subsection*{Solution:}
+    $B^2 = \begin{bmatrix} 1^2+1\cdot8 & 1^2+1\cdot3\\8\cdot1+3\cdot8 & 1\cdot8+3^2 \end{bmatrix}$
+    \\
+    $B^2 = \begin{bmatrix} 9 & 4\\32 & 17 \end{bmatrix}$  
+    \hfill (1)
+    \\
+    $4B = \begin{bmatrix} 4 & 4\\ 32 & 12 \end{bmatrix}$
+    \hfill (2)
+    \\
+    \\
+    Substituting (1) and (2) in $X = B^2-4B$
+    \[\Rightarrow X = \begin{bmatrix} 5 & 0\\0 & 5 \end{bmatrix}\]
+    \\
+    Thus we obtain $X \begin{bmatrix}a\\b\end{bmatrix}
+    = \begin{bmatrix}5a\\5b\end{bmatrix}$
+    \hfill (3)
+    \\
+    Also, given that $X \begin{bmatrix}a\\b\end{bmatrix}
+    = \begin{bmatrix} 5\\50 \end{bmatrix} $
+    \hfill (4)
+    \\
+    From (3) and (4),
+    \[ \Rightarrow \begin{bmatrix}5a\\5b\end{bmatrix} 
+    =\begin{bmatrix} 5\\50 \end{bmatrix} \]
+    On equating elements $a = 1 , b = 10$
+
+\end{document}
