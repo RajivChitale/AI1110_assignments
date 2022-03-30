@@ -8,7 +8,9 @@ Solution = np.matrix('1;10')
 L= X*Solution
 R= np.matrix('5;50')
 
-print('Verifying whether LHS=RHS for a=1 and b=10,')
+print('Matrix X=')
+print(X)
+print('\nVerifying whether LHS=RHS for a=1 and b=10,')
 print('\nLHS=')
 print(L)
 print('\nRHS=')
