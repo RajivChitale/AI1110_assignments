@@ -1,9 +1,9 @@
-\documentclass[journal,11pt,twocolumn]{article}
+\documentclass[journal,12pt,twocolumn]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
 \title{Assignment 1, AI1110}
-\author{Rajiv Chitale (cs21btech11051)}
+\author{Rajiv Shailesh Chitale (cs21btech11051)}
 \date{29 March 2022}
 
 \pagenumbering{gobble}
@@ -20,29 +20,36 @@
     given $X \begin{bmatrix}a\\b\end{bmatrix}
     = \begin{bmatrix} 5\\50 \end{bmatrix} $
 \subsection*{Solution:}
-    $B^2 = \begin{bmatrix} 1^2+1\cdot8 & 1^2+1\cdot3\\8\cdot1+3\cdot8 & 1\cdot8+3^2 \end{bmatrix}$
-    \\
-    $B^2 = \begin{bmatrix} 9 & 4\\32 & 17 \end{bmatrix}$  
-    \hfill (1)
-    \\
-    $4B = \begin{bmatrix} 4 & 4\\ 32 & 12 \end{bmatrix}$
-    \hfill (2)
-    \\
-    \\
-    Substituting (1) and (2) in $X = B^2-4B$
-    \[\Rightarrow X = \begin{bmatrix} 5 & 0\\0 & 5 \end{bmatrix}\]
-    \\
+    First, obtain the characteristic equation of B,
+    \begin{align}
+        |B-\lambda I| &= 0 
+        \\
+        \begin{vmatrix} 1-\lambda & 1\\ 8 & 3-\lambda \end{vmatrix} &= 0 
+        \\
+        (1-\lambda)(3-\lambda)-(8)(1) &= 0
+        \\
+        \lambda ^2 - 4\lambda -5 &= 0
+    \end{align}
+        From Cayley-Hamilton theorem,
+        \begin{align} 
+        B^2 -4B - 5I &= 0
+        \\
+        B^2 -4B &= 5I
+        \\
+        \Rightarrow X &= 5I
+    \end{align}
     Thus we obtain $X \begin{bmatrix}a\\b\end{bmatrix}
-    = \begin{bmatrix}5a\\5b\end{bmatrix}$
-    \hfill (3)
+    = \begin{bmatrix}5a\\5b\end{bmatrix} $
+    \hfill (8)
     \\
-    Also, given that $X \begin{bmatrix}a\\b\end{bmatrix}
+    It is given that $X \begin{bmatrix}a\\b\end{bmatrix}
     = \begin{bmatrix} 5\\50 \end{bmatrix} $
-    \hfill (4)
+    \hfill (9)
     \\
-    From (3) and (4),
+    From (8) and (9),
     \[ \Rightarrow \begin{bmatrix}5a\\5b\end{bmatrix} 
     =\begin{bmatrix} 5\\50 \end{bmatrix} \]
     On equating elements $a = 1 , b = 10$
 
 \end{document}
+
