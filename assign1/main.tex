@@ -1,28 +1,32 @@
-\documentclass[journal,12pt,twocolumn]{article}
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
+\newcommand{\myvec}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\let\vec\mathbf
+%to write vector and matrix names in bold
+
 \title{Assignment 1, AI1110}
 \author{Rajiv Shailesh Chitale (cs21btech11051)}
-\date{29 March 2022}
+\date{1 April 2022}
 
 \pagenumbering{gobble}
 \begin{document}
 \maketitle
 
-\subsection*{ICSE 10th, 2017 Paper}
-\subsection*{Question 5 (a)}
-    Given matrix $B = \begin{bmatrix} 1 & 1 \\8 & 3 \end{bmatrix}$
+\subsection*{\textbf{ICSE 10th, 2017 Paper}}
+\subsection*{\textbf{Question 5(a)}}
+    Given matrix $\vec{B} = \begin{bmatrix} 1 & 1 \\8 & 3 \end{bmatrix}$
     . Find the matrix 
     \\
-    X if,  $X = B^2-4B$. Hence solve for a and b 
+    \textbf{X} if,  $\vec{X} = \vec{B}^2 -4\vec{B}$. Hence solve for a and b
     \\
-    given $X \begin{bmatrix}a\\b\end{bmatrix}
+    given $\vec{X} \myvec{a \\ b}
     = \begin{bmatrix} 5\\50 \end{bmatrix} $
-\subsection*{Solution:}
+\subsection*{\textbf{Solution:}}
     First, obtain the characteristic equation of B,
     \begin{align}
-        |B-\lambda I| &= 0 
+        |\vec{B}-\lambda \vec{I}| &= 0 
         \\
         \begin{vmatrix} 1-\lambda & 1\\ 8 & 3-\lambda \end{vmatrix} &= 0 
         \\
@@ -32,24 +36,25 @@
     \end{align}
         From Cayley-Hamilton theorem,
         \begin{align} 
-        B^2 -4B - 5I &= 0
+        \vec{B}^2 -4\vec{B} - 5\vec{I} &= 0
         \\
-        B^2 -4B &= 5I
+        \vec{B}^2 -4\vec{B} &= 5\vec{I}
         \\
-        \Rightarrow X &= 5I
+        \Rightarrow \vec{X} &= 5\vec{I}
     \end{align}
-    Thus we obtain $X \begin{bmatrix}a\\b\end{bmatrix}
-    = \begin{bmatrix}5a\\5b\end{bmatrix} $
+    Thus we obtain $\vec{X} \myvec{a \\ b}
+    = \myvec{5a \\ 5b} $
     \hfill (8)
     \\
-    It is given that $X \begin{bmatrix}a\\b\end{bmatrix}
-    = \begin{bmatrix} 5\\50 \end{bmatrix} $
+    \\
+    It is given that $\vec{X} \myvec{a \\ b}
+    = \myvec{5 \\ 50} $
     \hfill (9)
     \\
     From (8) and (9),
-    \[ \Rightarrow \begin{bmatrix}5a\\5b\end{bmatrix} 
-    =\begin{bmatrix} 5\\50 \end{bmatrix} \]
+    \[ \Rightarrow \myvec{5a \\ 5b}
+    =\myvec{5 \\ 50} \]
     On equating elements $a = 1 , b = 10$
-
+    
 \end{document}
 
