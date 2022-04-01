@@ -2,3 +2,4 @@ main.pdf contains the solution to Q5(a) from icse class 10 paper, 2017
 verify.py is a python code for verification of solution
 
 30-3-22 Update1: used Cayley-Hamilton Theorem in solution
+1-4-22 Update2: used macros myvec, vec and used IEEEtran template
