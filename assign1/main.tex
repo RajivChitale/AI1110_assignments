@@ -2,13 +2,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 
-\newcommand{\myvec}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
 \let\vec\mathbf
 %to write vector and matrix names in bold
 
 \title{Assignment 1, AI1110}
 \author{Rajiv Shailesh Chitale (cs21btech11051)}
-\date{1 April 2022}
+\date{2 April 2022}
 
 \pagenumbering{gobble}
 \begin{document}
@@ -16,13 +16,13 @@
 
 \subsection*{\textbf{ICSE 10th, 2017 Paper}}
 \subsection*{\textbf{Question 5(a)}}
-    Given matrix $\vec{B} = \begin{bmatrix} 1 & 1 \\8 & 3 \end{bmatrix}$
+    Given matrix $\vec{B} = \myvec{ 1 & 1 \\8 & 3}$
     . Find the matrix 
     \\
     \textbf{X} if,  $\vec{X} = \vec{B}^2 -4\vec{B}$. Hence solve for a and b
     \\
     given $\vec{X} \myvec{a \\ b}
-    = \begin{bmatrix} 5\\50 \end{bmatrix} $
+    = \myvec{5\\50} $
 \subsection*{\textbf{Solution:}}
     First, obtain the characteristic equation of B,
     \begin{align}
