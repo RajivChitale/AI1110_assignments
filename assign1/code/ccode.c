@@ -136,7 +136,7 @@ Matrix Matrix_sub(Matrix left, Matrix right)
 {
 	if( (left.rows!=right.rows) || (left.cols!=right.cols) )
 	{
-		printf("Matrix incompatible for addition\n"); return left;
+		printf("Matrix incompatible for subtraction\n"); return left;
 	}
 	
 	Matrix m;
