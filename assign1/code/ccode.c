@@ -26,13 +26,13 @@ void Matrix_print(Matrix m);							//print values from matrix
 
 int main()
 {	
-	int data_B[] = {1,1,	8,3};
+	int data_B[] = {1,1,  8,3};
 	Matrix B = Matrix_fill(2, 2, data_B);  //initialize matrix B
 	
-	int data_Sol[] = {1,10};
+	int data_Sol[] = {1,  10};
 	Matrix Sol = Matrix_fill(2, 1, data_Sol); //initialize vector with solutions for a,b
 	
-	int data_R[] = {5,50};
+	int data_R[] = {5,  50};
 	Matrix R = Matrix_fill(2, 1, data_R); //initialize vector on RHS
 
 	Matrix Bsqr = Matrix_dot(B,B);
