@@ -6,3 +6,4 @@ verify.py is a python code for verification of solution
 2-4-22 Update3: used parantheses in myvec, used macros myvec and mydet wherever possible
 4-4-22 Update4: used align for last four equations. Used label and eqref.
 5-4-22 Update5: added c code for verification
+9-4-22 Update6: python code prints characteristic polynomial
