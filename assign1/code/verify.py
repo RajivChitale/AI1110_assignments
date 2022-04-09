@@ -8,8 +8,8 @@ Solution = np.array([ [1], [10] ])
 L= X*Solution
 R= np.array([ [5], [50] ])
 
-coeff = np.poly(B)					#finds characteristic equation coefficients 
-pol = np.polynomial.polynomial.Polynomial(coeff[::-1])  #creating polynomial (note: needs reverse order)
+coeff = np.poly(B)					#finds characteristic polynomial coefficients 
+pol = np.polynomial.polynomial.Polynomial(coeff[::-1])  #creating polynomial object (needs reverse order of coeff)
 np.polynomial.set_default_printstyle('unicode')
 print('Characteristic polynomial of B is:')
 print(pol)
