@@ -1,17 +1,25 @@
 import numpy as np
 
 #find matrix X from B
-B= np.matrix('1 1; 8 3')
+B= np.array([ [1,1], [8, 3] ])
 X= B*B- 4*B
 
-Solution = np.matrix('1;10')
+Solution = np.array([ [1], [10] ])
 L= X*Solution
-R= np.matrix('5;50')
+R= np.array([ [5], [50] ])
 
-print('Matrix X=')
+coeff = np.poly(B)					#finds characteristic equation coefficients 
+pol = np.polynomial.polynomial.Polynomial(coeff[::-1])  #creating polynomial (note: needs reverse order)
+np.polynomial.set_default_printstyle('unicode')
+print('Characteristic polynomial of B is:')
+print(pol)
+
+print('\nMatrix X=')
 print(X)
 print('\nVerifying whether LHS=RHS for a=1 and b=10,')
 print('\nLHS=')
 print(L)
 print('\nRHS=')
 print(R)
+
+
