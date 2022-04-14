@@ -6,7 +6,8 @@ import numpy as np
 A = np.array([ [3], [-2], [1] ])
 n = np.array([ [3],[-1],[4] ])
 c = 2
-lamda = ( c- np.dot(n.transpose(), A) ) / np.dot(n.transpose(),n)
+nt = n.transpose()
+lamda = (c- (nt @ A)) / (nt @ n)
 R = A + 2* lamda * n
 
 print('lambda =\n', lamda[0][0]) 

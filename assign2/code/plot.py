@@ -3,7 +3,8 @@ import numpy as np
 
 #takes vector n and constant c from equation of a plane. Takes point A and returns its image wrt the plane
 def reflect(n, c, A):
-	lamda = ( c- np.dot(n.transpose(), A) ) / np.dot(n.transpose(),n)
+	nt = n.transpose()
+	lamda = (c- (nt @ A)) / (nt @ n)
 	R = A + 2* lamda * n
 	return R
 	
