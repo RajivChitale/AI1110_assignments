@@ -1,0 +1,66 @@
+#generates excel sheet with classmarks and plots a frequency polygon
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import string
+
+#labels points with names A,B,C...Z and their cooridinates
+def annotateAZ(X , Y):
+	alphabet_string = string.ascii_uppercase
+	namelist = list(alphabet_string)
+	for i in range(len(X)):
+		plt.text(X[i]-2, Y[i]+0.1, "{}({},{})".format(namelist[i], X[i], Y[i]), fontsize=12, color='red', zorder=-1)
+	return
+	
+#read excel file
+data = pd.read_excel('../tables/table1.xlsx', index_col=False, skiprows=[11])
+
+#find L, U, C 
+data[['L','U']] = data['Marks'].str.split('-', expand=True)
+data['L'] = data['L'].astype(int)
+data['U'] = data['U'].astype(int)
+data['C']= (data['L'] + data['U']) / 2
+data['C'] = data['C'].astype(int) 		#removed decimal points only after checking that all classmarks are integers
+
+#add higher imaginary class
+w = data.iat[1,4] - data.iat[0,4]  #classwidth
+pos= len(data.index) - 1 #final row position
+Lmax= data.iat[pos,2] + w
+Umax= data.iat[pos,3] + w
+Cmax= data.iat[pos,4] + w
+data.loc[pos+1] = ['{}-{}'.format(Lmax,Umax), 0, Lmax, Umax, Cmax] 
+
+#add lower imginary class 
+Lmin= data.iat[0,2] - w
+Umin= data.iat[0,3] - w
+Cmin= data.iat[0,4] - w
+firstrow = pd.DataFrame({'Marks':['({})-{}'.format(Lmin, Umin)],
+                    'Number of Students':[0],
+                    'L' : [Lmin],
+                    'U' : [Umin],
+                    'C' : [Cmin] })                
+data= pd.concat([firstrow, data], ignore_index=True)
+
+#store excel file
+data.to_excel('../tables/classmarks.xlsx', index=False)
+
+#plot
+data = data.to_numpy()
+f = data[:,1].flatten()
+C = data[:,4].flatten()
+plt.plot(C ,f, marker='.', color='b', label='frequency') 	#frequencies
+plt.plot(C, np.zeros(pos+3), marker=2, color='b')		#x axis with class marks
+annotateAZ(C, f)
+
+plt.xlabel('Marks', fontsize=12)
+plt.ylabel('Number of Students', fontsize=12)
+plt.legend(loc='best')
+plt.grid() 
+plt.title('Frequency Polygon for Students vs Marks', fontsize=12)
+plt.show()
+
+
+
+
+
