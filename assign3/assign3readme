@@ -1,4 +1,8 @@
 main.pdf contains the solution to Example 8 from NCERT class 9 Statistics
 plot.py is a python code for generating classmarks.xlsx and plotting frequency polygon
+table1 contains given frequency distribution
+table2 contains useful definitions
+table3 contains classmarks based on classmarks.xlsx
+fig1.png contains frequency polygon
 
 20-4-22 Release version
