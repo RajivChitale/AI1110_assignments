@@ -6,11 +6,9 @@ import matplotlib.pyplot as plt
 import string
 
 #labels points with names A,B,C...Z and their cooridinates
-def annotateAZ(X , Y):
-	alphabet_string = string.ascii_uppercase
-	namelist = list(alphabet_string)
+def annotateAZ(X , Y, namelist):
 	for i in range(len(X)):
-		plt.text(X[i]-2, Y[i]+0.1, "{}({},{})".format(namelist[i], X[i], Y[i]), fontsize=12, color='red', zorder=-1)
+		plt.text(X[i]-2, Y[i]+0.15, namelist[i], fontsize=15, color='red', zorder=2)
 	return
 	
 #read excel file
@@ -42,6 +40,11 @@ firstrow = pd.DataFrame({'Marks':['({})-{}'.format(Lmin, Umin)],
                     'C' : [Cmin] })                
 data= pd.concat([firstrow, data], ignore_index=True)
 
+#gives points names in the order A,B,C...
+alphabet_string = string.ascii_uppercase
+namelist = list(alphabet_string)[0:pos+3:]
+data['Points']= namelist
+
 #store excel file
 data.to_excel('../tables/classmarks.xlsx', index=False)
 
@@ -49,15 +52,16 @@ data.to_excel('../tables/classmarks.xlsx', index=False)
 data = data.to_numpy()
 f = data[:,1].flatten()
 C = data[:,4].flatten()
-plt.plot(C ,f, marker='.', color='b', label='frequency') 	#frequencies
+annotateAZ(C, f, namelist)
+plt.plot(C ,f, marker='.', color='b', label='(C,f)', zorder=1) 	#frequencies
 plt.plot(C, np.zeros(pos+3), marker=2, color='b')		#x axis with class marks
-annotateAZ(C, f)
 
-plt.xlabel('Marks', fontsize=12)
-plt.ylabel('Number of Students', fontsize=12)
+
+plt.xlabel('Marks', fontsize=15)
+plt.ylabel('Number of Students', fontsize=15)
 plt.legend(loc='best')
 plt.grid() 
-plt.title('Frequency Polygon for Students vs Marks', fontsize=12)
+plt.title('Frequency Polygon for Students vs Marks', fontsize=15)
 plt.show()
 
 
