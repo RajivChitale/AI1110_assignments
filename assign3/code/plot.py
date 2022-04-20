@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import string
 
 #takes coordinates of points and labels them according to namelist
-def annotateAZ(X , Y, namelist):
+def annotate2d(X , Y, namelist):
 	for i in range(len(X)):
 		plt.text(X[i]-2, Y[i]+0.15, namelist[i], fontsize=15, color='red', zorder=2)
 	return
@@ -53,7 +53,7 @@ data.to_excel('../tables/classmarks.xlsx', index=False)
 data = data.to_numpy()
 f = data[:,1].flatten()
 C = data[:,4].flatten()
-annotateAZ(C, f, namelist)
+annotate2d(C, f, namelist)
 plt.plot(C ,f, marker='.', color='b', label='(C,f)', zorder=1) 	#frequencies
 plt.plot(C, np.zeros(pos+3), marker=2, color='b')		#x axis with class marks
 
