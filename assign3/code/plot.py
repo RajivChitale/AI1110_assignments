@@ -1,11 +1,12 @@
-#generates excel sheet with classmarks and plots a frequency polygon
+#Generates excel sheet with classmarks and point names. 
+#Then it plots the corresponding frequency polygon
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import string
 
-#labels points with names A,B,C...Z and their cooridinates
+#takes coordinates of points and labels them according to namelist
 def annotateAZ(X , Y, namelist):
 	for i in range(len(X)):
 		plt.text(X[i]-2, Y[i]+0.15, namelist[i], fontsize=15, color='red', zorder=2)
