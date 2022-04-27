@@ -1,0 +1,7 @@
+Note: The TA clarified on telegram that the questions assigned that day were from class 10 NCERT. Not Class 9 as written in the spreadsheet.
+
+main.pdf contains solution to Example 1 from NCERT Class 10 Probability (15.2)
+verify.py is a python code to simulate trials to get emperical probabilty
+table1 contains the frequencies of outcomes in one such trial
+
+27-4-22 Release Version
