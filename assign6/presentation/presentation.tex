@@ -147,15 +147,14 @@ columns=fullflexible
 
 \begin{frame}{Question}
     %\textbf{Question 15:}
-     \begin{block}{Source}
-        Question 15, NCERT class 12 Probability Ex 13.1 
-    \end{block} 
+     \begin{block}{ Question 15, NCERT class 12 Probability Ex 13.1}
     Consider the experiment of throwing a die.
     \begin{itemize}
         \item If a multiple of 3 comes up, throw the die again
         \item If any other number comes, toss a coin.
     \end{itemize}
      Find the conditional probability of the event \lq the coin shows a tail\rq, given that \lq at least one die shows a 3\rq.
+     \end{block} 
 \end{frame}
 
 \section{Random Variables}
@@ -171,51 +170,63 @@ columns=fullflexible
 %%
 \section{Recursion}
 \begin{frame}{Recursion}
-    Equations are obtained using recursive cases. Solving them yields probabilities. 
+    When the die rolls a multiple of 3, recursion is generated. For $k \in \cbrak{1,2,3,4,5,6}$,
     \begin{align}
-        \pr{X_3 = 1} 
-        &= \pr{X_1 = 3} + \pr{X_1 = 6} \times \pr{X_3 = 1} \\
-        \pr{X_3 = 1} &= \frac{1}{6} + \frac{1}{6}  \times \pr{X_3 = 1} \\
-        \pr{X_3 = 1} &= \frac{1}{5}
+        \pr{X_{n+1}=k} &= \sum_{i \in \cbrak{3, 6}}\pr{X_1=i} \times \pr{X_n=k}
+        \label{eq:recursionX}
+    \end{align}
+    \begin{align}
+        \pr{X_{n+1}=k} &= \frac{2}{6} \times \pr{X_n=k}\\
+        \implies \pr{X_{n}=k} &= \brak{\frac{1}{3}}^{n-1} \times \pr{X_1=k}
     \end{align}
 \end{frame}
 %%
 \begin{frame}{Recursion (contd.)}
-    \begin{multline}
-        \pr{X_2 = 1} 
-        = \pr{X_1 \in \cbrak{1,2,4,5} } \times \pr{X_4 = 1} \\
-        + \pr{X_1 \in \cbrak{3, 6} } \times \pr{X_2 = 1} 
-    \end{multline}
+    There is a recursion on the first occurrence of 3.
     \begin{align}
-        \pr{X_2 = 1} &= \frac{4}{6} \times \frac{1}{2} + \frac{2}{6}  \times \pr{X_2 = 1} \\
-        \pr{X_2 = 1} &= \frac{1}{2}
+        \pr{Y=n} &= \pr{X_1=6} \times \pr{Y= n-1} \\
+        \implies \pr{Y=n} &= \brak{\frac{1}{6}}^{n-1} \times \pr{X_1=3} 
+        \label{eq:recursionY}
+    \end{align}
+    For probability that 3 occurs at least once,
+    \begin{align}
+        \sum_{n=1}^\infty  \pr{Y=n} &= 
+         \sum_{n=1}^\infty \brak{\frac{1}{6}}^{n-1} \times \pr{X_1=3} \\
+        \sum_{n=1}^\infty \pr{Y=n} &= 
+         \frac{\frac{1}{6}}{1-\frac{1}{6}} \times \frac{1}{6} \\
+       \sum_{n=1}^\infty \pr{Y=n} &= \frac{1}{5}
+       \label{eq:occurrence3}
     \end{align}
 \end{frame}
 %%
 \section{Conditional Probability}
 \begin{frame}{Conditional Probability}
-    \begin{block}{Required probability:}
+    Required conditional probability is,
     \begin{align}
-        \pr{X_2 = 1 | X_3 = 1} = \frac{\pr{(X_2 = 1)(X_3 = 1)}} {\pr{X_3 = 1}}
+        &\pr{\brak{Z_1=1} | \sum_{n=1}^\infty \pr{Y=n}} \\
+        &=\frac{ \sum_{n=1}^\infty \pr{Y=n} \pr{Z_1 = 1}} {\sum_{n=1}^\infty \pr{Y=n}}
     \end{align}
-    \end{block}
-    \begin{multline}
-        \pr{(X_2 = 1)(X_3 = 1)} 
-        = \pr{X_1 = 3} \times \pr{X_2 = 1} \\
-        + \pr{X_1 = 6} \times \pr{(X_2 = 1)(X_3 = 1)}
-    \end{multline}
+\end{frame}
+%%
+\begin{frame}{Calculation}
+    Consider first occurrence of 3 on $n^{th}$ throw and m further throws.
     \begin{align}
-        \pr{(X_2 = 1)(X_3 = 1)} 
-        &= \frac{1}{6} \times \frac{1}{2} 
-        + \frac{1}{6} \times  \pr{(X_2 = 1)(X_3 = 1)} \\
-        \implies \pr{(X_2 = 1)(X_3 = 1)} &= \frac{1}{10}
+        &\sum_{n=1}^\infty \pr{Y=n} \pr{Z_1 = 1} \\
+        &=\sum_{n=1}^\infty \sum_{m=1}^\infty \pr{Y=n} 
+          \sum_{i \in \cbrak{1,2,4,5}}\pr{X_m = i} \times \pr{Z_2 = 1} \\
+        &=\sum_{n=1}^\infty \pr{Y=n} \sum_{m=1}^\infty 
+        4 \times \brak{\frac{1}{3}}^{m-1} \brak{\frac{1}{6}} \times \pr{Z_2 = 1} \\
+        &= \frac{1}{5} \times 4 \times \frac{3}{2} \times \frac{1}{6} \times \frac{1}{2}
+    \end{align}
+    \begin{align}
+        \implies \sum_{n=1}^\infty \pr{Y=n} \pr{Z_1 = 1} = \frac{1}{10}
     \end{align}
 \end{frame}
 %%
 \begin{frame}{Answer}
     \begin{align}
-        \therefore \pr{X_2 = 1 | X_3 = 1} &= \frac{1}{10} \div \frac{1}{5} \\
-        &= \frac{1}{2}
+    \therefore \pr{\brak{Z_1=1} | \sum_{n=1}^\infty \pr{Y=n}}  &= \frac{1}{10} \div \frac{1}{5} \\
+    &= \frac{1}{2}
     \end{align}
 \end{frame}
 \end{document}
