@@ -204,14 +204,14 @@ columns=fullflexible
     Required conditional probability is,
     \begin{align}
         &\pr{\brak{Z_1=1} | \sum_{n=1}^\infty \pr{Y=n}} \\
-        &=\frac{ \sum_{n=1}^\infty \pr{Y=n} \pr{Z_1 = 1}} {\sum_{n=1}^\infty \pr{Y=n}}
+        &=\frac{\sum_{n=1}^\infty \pr{\brak{Y=n}\brak{Z_1 = 1}}  } {\sum_{n=1}^\infty \pr{Y=n}}
     \end{align}
 \end{frame}
 %%
 \begin{frame}{Calculation}
     Consider first occurrence of 3 on $n^{th}$ throw and m further throws.
     \begin{align}
-        &\sum_{n=1}^\infty \pr{Y=n} \pr{Z_1 = 1} \\
+        &\sum_{n=1}^\infty \pr{\brak{Y=n}\brak{Z_1 = 1}}  \\
         &=\sum_{n=1}^\infty \sum_{m=1}^\infty \pr{Y=n} 
           \sum_{i \in \cbrak{1,2,4,5}}\pr{X_m = i} \times \pr{Z_2 = 1} \\
         &=\sum_{n=1}^\infty \pr{Y=n} \sum_{m=1}^\infty 
