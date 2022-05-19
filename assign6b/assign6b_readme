@@ -1,0 +1,12 @@
+presentation.pdf and main.pdf contain a solution to Question 15 from NCERT class 12 Probability Ex 13.1
+
+solve.py contains python code for obtaining final state vector
+sheet2txt.py was used to convert excel data to text used in latex matrices
+
+table1.tex describes random variables
+table2.tex describes states in Markov Chain
+table3 contains data for transition matrix
+table4 contains data for initial state vector
+table5 contains data for limiting state vector
+
+19-5-22 release version
