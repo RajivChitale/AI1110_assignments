@@ -5,8 +5,10 @@ sheet2txt.py was used to convert excel data to text used in latex matrices
 
 table1.tex describes random variables
 table2.tex describes states in Markov Chain
-table3 contains data for transition matrix
-table4 contains data for initial state vector
+table3 contains data for transition matrix. 
+data_matrix.xlsx contains the same data with decimals, read by solve.py
+table4 contains data for initial state vector. 
+data_initial.xlsx contains the same data with decimals, read by solve.py
 table5 contains data for limiting state vector
 
 19-5-22 release version
