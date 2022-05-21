@@ -11,4 +11,7 @@ table4 contains data for initial state vector.
 data_initial.xlsx contains the same data with decimals, read by solve.py
 table5 contains data for limiting state vector
 
+graph1.txt contains nodes and edges of the graph
+
 19-5-22 release version
+21-5-22 added diagram for Markov chain
