@@ -1,35 +1,21 @@
-\node [circle , draw ] (e1)  at (2 , 4)  {$e_1$};
-\node [circle , draw ] (e2)  at (0 , 4) {$e_2$};
-\node [circle , draw ] (e3)  at (2 , 2) {$e_3$};
-\node [circle , draw ] (e4)  at (0 , 0) {$e_4$};
-\node [circle , draw ] (e5)  at (2 , 0) {$e_5$};
-\node [circle , draw ] (e6)  at (7 , 4) {$e_6$};
-\node [circle , draw ] (e7)  at (5 , 4) {$e_7$};        
-\node [circle , draw ] (e8)  at (7 , 2) {$e_8$};
-\node [circle , draw ] (e9)  at (5 , 0) {$e_9$};
-\node [circle , draw ] (e10)  at (7 , 0) {$e_{10}$};
+\node [circle , draw ] (e0)  at (0 , 3)  {$e_0$};
+\node [circle , draw ] (e1)  at (0 , 0) {$e_1$};
+\node [circle , draw ] (e2)  at (4 , 1.5) {$e_2$};
+\node [circle , draw ] (e3)  at (7 , 2.5) {$e_3$};
+\node [circle , draw ] (e4)  at (7 , 0.5) {$e_4$};
 
-\path (e2) edge [ loop above ] node {$\frac{1}{6}$} (e2) ;
-\path (e2) edge [ bend left ] node [above] {$\frac{1}{6}$} (e1) ;
-\path (e2) edge [ bend right ] node [ right ]{$\frac{4}{6}$} (e3) ;
-\path (e3) edge [ above ] node {$\frac{1}{2}$} (e4) ;
-\path (e3) edge [ above ] node [right] {$\frac{1}{2}$} (e5) ;
+\begin{small}
+\path (e0) edge [ loop left ] node [left] {$p_{0/0} = \frac{1}{6}$} (e0) ;
+\path (e0) edge [ bend left] node [right] {$p_{1/0} = \frac{1}{6}$} (e1) ;
+\path (e0) edge [ bend left ] node [above]{$p_{2/0} = \frac{4}{6}$} (e2) ;
 
-\path (e1) edge [ bend left] node [above] {$\frac{1}{6}$} (e7) ;
-\path (e1) edge [ bend right ] node [below] {$\frac{1}{6}$} (e6) ;
-\path (e1) edge [ bend right ] node [below]{$\frac{4}{6}$} (e8) ;
+\path (e1) edge [ loop left ] node [left] {$p_{1/1} = \frac{1}{6}$} (e1) ;
+\path (e1) edge [ bend left ] node [left] {$p_{0/1} = \frac{1}{6}$} (e0) ;
+\path (e1) edge [ bend right ] node [below]{$p_{2/1} = \frac{4}{6}$} (e2) ;
 
-\path (e7) edge [ loop above ] node {$\frac{1}{6}$} (e7) ;
-\path (e7) edge [ bend left ] node [above] {$\frac{1}{6}$} (e6) ;
-\path (e7) edge [ bend right ] node [ right ]{$\frac{4}{6}$} (e8) ;
-\path (e8) edge [ above ] node {$\frac{1}{2}$} (e9) ;
-\path (e8) edge [ above ] node [right] {$\frac{1}{2}$} (e10) ;
+\path (e2) edge [ bend left ] node [above] {$p_{3/2} = \frac{1}{2}$} (e3) ;
+\path (e2) edge [ bend right ] node [below] {$p_{4/2} = \frac{1}{2}$} (e4) ;
 
-\path (e6) edge node {$\frac{1}{6}$} (e7) ;
-\path (e6) edge [ loop above ] node {$\frac{1}{6}$} (e6) ;
-\path (e6) edge [ bend right ] node [ left ]{$\frac{4}{6}$} (e8) ;
-
-\path (e4) edge [ loop below ] node {$1$} (e4) ;
-\path (e5) edge [ loop below ] node {$1$} (e5) ;        
-\path (e9) edge [ loop below ] node {$1$} (e9) ;
-\path (e10) edge [ loop below ] node {$1$} (e10) ;
+\path (e3) edge [ loop right ] node {$p_{3/3} = 1$} (e3) ;
+\path (e4) edge [ loop right ] node {$p_{4/4} = 1$} (e4) ;        
+\end{small}
