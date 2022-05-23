@@ -156,32 +156,19 @@ columns=fullflexible
      Find the conditional probability of the event \lq the coin shows a tail\rq, given that \lq at least one die shows a 3\rq.
      \end{block} 
 \end{frame}
-
-\section{Random Variables}
-\begin{frame}{Random Variables}
-    \begin{block}{Solution:}
-    Some useful random variables are defined below. $Y_n$ describes whether 3 has occurred before $n^{th}$ throw.
-    \begin{table}[ht!]
-        \centering
-    	\input{tables/table1.tex}
-        \caption{Random variables}
-        \label{table:RandomVariables}	
-    \end{table}
-    \end{block}
-\end{frame}
 %%
 \section{Markov Chain States}
 \begin{frame}{Markov Chain}
-    Let us construct a Markov chain with discrete time t.
-    The states $e_1$ \dots $e_5$ describe the outcomes from the latest dice throw or coin toss. States $e_6$ \dots $e_{10}$ are similar but they denote that at least one die showed 3 before t.
+    Let us construct a Markov chain $X_t$ with discrete time t. The states $e_1$, $e_2$ and $e_3$ describe the outcomes from the latest dice throw. The states $e_4$ and $e_5$ describe the outcomes of the latest coin toss.
 \end{frame}
 %%
 \begin{frame}{States}
+    Let $ Y \in \cbrak{1,2,3,4,5,6} $ denote the number obtained from a die throw. 
     \begin{table}[ht!]
         \centering
-    	\input{tables/table2.tex}
-        \caption{Event states}
-        \label{table:EventStates}	
+    	\input{tables/table1.tex}
+        \caption{States in Markov Chain}
+        \label{table:States}	
     \end{table}
 \end{frame}
 %%
@@ -189,49 +176,46 @@ columns=fullflexible
 \begin{frame}{Graph of Markov Chain}
     \begin{figure}[!ht]
         \centering
-        \small{
         \begin{tikzpicture}[->, >= stealth, shorten >=2pt , line width =0.5 pt ,
             node distance =2 cm]
             \input{graph/graph1.txt}  
         \end{tikzpicture}
-        }
         \caption{Graph of Markov Chain}
         \label{fig: markov_chain}
     \end{figure}
 \end{frame}
 %%
+\section{Transition Probability Matrix}
 \begin{frame}{Transition Probability Matrix}
-    The transition probability matrix $\vec{P_{ij}}=$
-    \small{
+    $p_{j/i}$ is the probability of moving from state $e_i$ to $e_j$. 
     \begin{align}
-        \myvec{\input{tables/table3.txt}} 
+    p_{j/i} = \pr{\frac{ X_{t+1}=e_j } {X_t=e_i} }
     \end{align}
-    }
+    
+    These probabilities are contained in the transition probability matrix.
+    \begin{align}
+        \vec{P_{ij}}= \myvec{\input{tables/table2.txt}} 
+    \end{align}
 \end{frame}
 %%
-\begin{frame}{State vector}
-    \normalsize{} %just in case font size is stuck as small
-    An element in $\vec{P_{ij}}$ represents the probability of moving from state $e_i$ to $e_j$. $\vec{Q_t}$ is the state vector at a given t. Initial state vector is provided for $t=1$ 
+\section{Limiting State Vector}
+\begin{frame}{Limiting state vector}
+    $\vec{Q_t}$ is the state vector at a given t. The given condition is that 3 occurs at least once. Let the first occurrence of 3 be the initial state $\vec{Q_0}$.
     \begin{align}
-        \vec{Q_1} &= \myvec{\input{tables/table4.txt}} \\
-        \vec{Q_t} &= \vec{Q_1} \vec{P}^{t-1}  
+        \vec{Q_0} &= \myvec{\input{tables/table3.txt}} \\
+        \vec{Q_t} &= \vec{Q_0} \vec{P}^{t}  
     \end{align}
-    The limiting probabilities of states are given by,
+    %  
+    The limiting probabilities of states, calculated from solve.py,
     \begin{align}
        \lim_{t \to \infty}  \vec{Q_t} &= 
-       \myvec{\input{tables/table5.txt}} 
+       \myvec{\input{tables/table4.txt}} 
+    \end{align}
+    %
+    Required conditional probability is,
+    \begin{align}
+       \lim_{t \to \infty} \pr{X_t=e_4} = 0.5
     \end{align}
 \end{frame}
 %%
-\section{Conditional Probability}
-\begin{frame}{Conditional Probability}
-    Required conditional probability is,
-    \begin{align}
-       &\lim_{t \to \infty} \pr{\brak{Z=1} | \pr{Y_t=1}} \\
-       &= \lim_{t \to \infty} \frac{\pr{\brak{Z=1}\brak{Y_t=1}}}{\pr{Y_t=1}} \\
-       &= \lim_{t \to \infty} \frac{ \pr{e_{10}} }  { \sum_{i=6}^{10}\pr{e_i} } \\
-       &= \frac{0.1}{0.2} \\
-       &= 0.5
-    \end{align}
-\end{frame}
 \end{document}
