@@ -2,12 +2,12 @@
 #note: remove final \\ from output manually
 import pandas as pd
  
-df = pd.read_excel('../tables/table3.xlsx')
+df = pd.read_excel('../tables/table4.xlsx')
 
 text = df.to_csv(index = False, header = False)
 text = text.replace(',', ' & ')
 text = text.replace('\n', ' \\\\\n')
 
-with open('../tables/table3.txt', 'w+') as outfile:
+with open('../tables/table4.txt', 'w+') as outfile:
 	outfile.write(text)
 	

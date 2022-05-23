@@ -5,7 +5,7 @@ N=50
 #large N limiting to stationary state
 
 #transition matrix
-data_matrix = pd.read_excel('../tables/data_matrix.xlsx', index_col=False, usecols=range(1,11))
+data_matrix = pd.read_excel('../tables/data_matrix.xlsx', index_col=False, usecols=range(1,6))
 P = data_matrix.to_numpy()
 
 #initial state
@@ -20,9 +20,7 @@ Q = Q.round(4)
 #print required probability
 print("Steady state vector of Markov chain:")
 print(Q)
-print("P((Z=1)(Y=1)) = ", Q[9] )
-print("P(Y=1) = ",  np.sum(Q[5:10]) ) 
-print("P(Z=1|Y=1) = ", Q[9]/ np.sum(Q[5:10]) )
+print("Required Probability = ", Q[4]) 
 
 #save to file
 data_final = pd.DataFrame(Q).T
