@@ -12,7 +12,7 @@
 \usepackage{amsthm}
 \usepackage{stfloats}
 \usepackage{bm}
-\usepackage{enumitem}
+%\usepackage{enumitem} %not compatible with beamer
 \usepackage{mathtools}
   \usepackage{tikz}
 % \usepackage{circuitikz}
@@ -66,6 +66,7 @@ columns=fullflexible
 %
 \providecommand{\mbf}{\mathbf}
 \providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\prt}[2]{\ensuremath{P_{#1}^{\left(#2\right)} }}        % own macro for this question
 \providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
 \providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}      % []
 \providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
@@ -159,7 +160,11 @@ columns=fullflexible
 %%
 \section{Markov Chain States}
 \begin{frame}{Markov Chain}
-    Let us construct a Markov chain $X_t$ with discrete time t. The states $e_0$, $e_1$ and $e_2$ describe the outcomes from the latest dice throw. The states $e_3$ and $e_4$ describe the outcomes of the latest coin toss.
+\begin{itemize}
+    \item  Let us construct a Markov chain $X_t$ with discrete time t.
+    \item  The states $e_0$, $e_1$ and $e_2$ describe the outcomes from the latest dice throw.
+    \item   The states $e_3$ and $e_4$ describe the outcomes of the latest coin toss.
+\end{itemize}
 \end{frame}
 %%
 \begin{frame}{States}
@@ -185,40 +190,83 @@ columns=fullflexible
     \end{figure}
 \end{frame}
 %%
-\section{Transition Probability Matrix}
-\begin{frame}{Transition Probability Matrix}
-    $p_{j/i}$ is the probability of moving from state $e_i$ to $e_j$. 
+\begin{frame}{Description of Graph and States}
+    $p_{j/i}$ is the probability of moving from state $e_i$ to $e_j$.
     \begin{align}
-    p_{j/i} = \pr{\frac{ X_{t+1}=e_j } {X_t=e_i} }
+    p_{j/i} = \pr{\frac{ X_{t+1}=j } {X_t=i} }
     \end{align}
-    
-    These probabilities are contained in the transition probability matrix.
+    \begin{block}{Absorbing States}
+    States $e_3$ and $e_4$ are absorbing states because $p_{3/3}=1$ and $p_{4/4}=1$. Once entered, they cannot be left.
+    \end{block}
+    \begin{block}{Transient States}
+    States $e_0$, $e_1$ and $e_2$ are transient states, because they lead to other states which have no return path, For example, $p_{3/2}=\frac{1}{2}$ but $p_{2/3}= 0$. Their probability will reduce to 0 eventually.
+    \end{block}
+\end{frame}
+%%
+\section{Transition Probabilities}
+\begin{frame}{State Probabilities in Next Step}
+ %NOTE: prt is a custom macro to display probabilities at time t
+    Let $\prt{i}{t}$ be the probability of state i at time t. 
+    Then the state vector is,
     \begin{align}
-        \vec{P_{ij}}= \myvec{\input{tables/table2.txt}} 
+        \vec{Q_t} &= \myvec{\prt{0}{t} & \prt{1}{t} & \prt{2}{t} & \prt{3}{t} & \prt{4}{t} }
+    \end{align}    
+    The probabilities after one step in time are
+    \begin{align}
+       \prt{0}{t+1} &= \frac{1}{6} \times\prt{0}{t} + \frac{1}{6} \times \prt{1}{t} \\
+       \prt{1}{t+1} &= \frac{1}{6} \times \prt{0}{t} + \frac{1}{6} \times \prt{1}{t} \\
+       \prt{2}{t+1} &= \frac{4}{6} \times \prt{0}{t} + \frac{4}{6} \times \prt{1}{t} \\
+       \prt{3}{t+1} &= \frac{1}{2} \times \prt{2}{t} + 1 \times \prt{3}{t} \\
+       \prt{4}{t+1} &= \frac{1}{2} \times \prt{2}{t} + 1 \times \prt{4}{t} 
     \end{align}
 \end{frame}
 %%
-\section{Limiting State Vector}
-\begin{frame}{Limiting state vector}
-    $\vec{Q_t}$ is the state vector at a given t. The given condition is that 3 occurs at least once. Let the first occurrence of 3 be the initial state $\vec{Q_0}$.
+\section{Transition Probability Matrix}
+\begin{frame}{Transition Probability Matrix}
+
+    The previous equations can be summarized as
     \begin{align}
-        \vec{Q_0} &= \myvec{\input{tables/table3.txt}} \\
+        \vec{Q_{t+1}} &= \vec{Q_t} \vec{P}  
+        \label{eq:transtition}
+    \end{align}
+    Where $\vec{P}$ is the transition probability matrix. Its elements are values of $p_{j/i}$
+    \begin{align}
+        \vec{P}= \myvec{\input{tables/table2.txt}} 
+    \end{align}
+\end{frame}
+%%
+\section{Initial Condition and Limiting State}
+\begin{frame}{Initial Condition}
+     The given condition is that \lq3 occurs at least once\rq. Let the first occurrence of 3 be the initial state $ \vec{Q_0}$.
+    \begin{align}
+        \vec{Q_0} &= \myvec{1 & 0 & 0 & 0 & 0} 
+    \end{align}
+    Using equation \eqref{eq:transtition}, further states can be generated.
+    \begin{align}
+        \vec{Q_1} &= \vec{Q_{0}} \vec{P}
+            = \myvec{\frac{1}{6} & \frac{1}{6} & \frac{4}{6} & 0 & 0}\\
+        \vec{Q_2} &=  \vec{Q_1} \vec{P} =\vec{Q_0} \vec{P}^{2}
+            = \myvec{\frac{1}{18} & \frac{1}{18} & \frac{2}{9} & \frac{1}{3} & \frac{1}{3}}\\   
+        \vdots \\
         \vec{Q_t} &= \vec{Q_0} \vec{P}^{t}  
     \end{align}
-    %  
-    The limiting probabilities of states, calculated from solve.py,
+\end{frame}
+%%
+\begin{frame}{Limiting Probabilities}
+    \begin{block}{Limiting Probabilities of States}
+    These can can be approximately calculated by taking large value of t,
     \begin{align}
        \lim_{t \to \infty}  \vec{Q_t} &= 
-       \myvec{\input{tables/table4.txt}} 
+       \myvec{\input{tables/table3.txt}} 
     \end{align}
+    \end{block}
     %
-    Required conditional probability is,
+    \begin{block}{Required Conditional Probability}
+    Probability of the coin showing tails, given that at least one die shows a 3,
     \begin{align}
-       \lim_{t \to \infty} \pr{X_t=e_4} = 0.5
+       \lim_{t \to \infty} \prt{4}{t} = 0.5
     \end{align}
+    \end{block}
 \end{frame}
 %%
 \end{document}
-
-
-
