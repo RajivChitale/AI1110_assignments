@@ -24,4 +24,4 @@ print("Required Probability = ", Q[4])
 
 #save to file
 data_final = pd.DataFrame(Q).T
-data_final.to_excel(excel_writer = "../tables/table5.xlsx")
+data_final.to_excel(excel_writer = "../tables/table3.xlsx")
