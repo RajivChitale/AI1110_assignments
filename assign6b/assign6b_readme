@@ -6,12 +6,11 @@ sheet2txt.py was used to convert excel data to text used in latex matrices
 table1.tex describes states in Markov Chain
 table2 contains data for transition matrix. 
 data_matrix.xlsx contains the same data with decimals, read by solve.py
-table3 contains data for initial state vector. 
-data_initial.xlsx contains the same data with decimals, read by solve.py
-table4 contains data for limiting state vector
+table3 contains data for limiting state vector
 
 graph1.txt contains nodes and edges of the graph
 
 19-5-22 release version
 21-5-22 Update1: added diagram for Markov chain
 24-5-22 Update2: reduced states in diagram to 5
+28-5-22 Update3: added equations for transitions over a single step in time. Identified transient/absorbing states.
