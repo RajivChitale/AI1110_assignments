@@ -2,7 +2,7 @@
 #note: remove final \\ from output manually
 import pandas as pd
  
-df = pd.read_excel('../tables/table4.xlsx')
+df = pd.read_excel('../tables/table2.xlsx')
 
 text = df.to_csv(index = False, header = False)
 text = text.replace(',', ' & ')
