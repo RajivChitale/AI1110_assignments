@@ -1,0 +1,16 @@
+\node [circle , draw ] (e1)  at (0 , 0) {$e_1$};
+\node [circle , draw ] (e2)  at (3 , 0) {$e_2$};
+\node [circle , draw ] (e3)  at (6, 0) {$e_3$};
+\node [circle , draw ] (e4)  at (9 , 0) {$e_i$};
+\node [circle , draw ] (e5)  at (11 , 0) {$e_{i+1}$};
+
+\path (e1) edge [ bend left ] node [above] {$p_{1,2} = \frac{1}{2}$} (e2) ;
+\path (e2) edge [ bend left ] node [above] {$p_{2,3} = \frac{2}{3}$} (e3) ;
+\path [dashed] (e3) edge [ bend left ] node [above] {} (e4) ;
+\path (e4) edge [ bend left ] node [above] {$p_{i,i+1} = \frac{1}{i+1}$} (e5) ;
+
+\path (e2) edge [ bend left ] node [above] {$p_{2,1} = \frac{1}{3}$} (e1) ;
+\path (e3) edge [ bend left ] node [above] {$p_{3,1} = \frac{1}{4}$} (e1) ;
+\path (e4) edge [ bend left ] node [below] {$p_{i,1} = \frac{i}{i+1}$} (e1) ;
+
+\path (e1) edge [ loop below ] node {$p_{1,1} = \frac{1}{2} $} (e1) ;
