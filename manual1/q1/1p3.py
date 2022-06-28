@@ -28,7 +28,7 @@ plt.grid()
 plt.minorticks_on()
 plt.xlabel("x")
 plt.ylabel("$F_U(x)$")
-plt.title("Emperical CDF of U")
+plt.title("Theoretical CDF of U")
 plt.savefig("../figs/fig1.3.png")
 plt.show()
 
