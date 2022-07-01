@@ -339,15 +339,21 @@ p_{X}\brak{x} = \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}}, -\infty < x < \i
 \end{align}
 repeat the above exercise theoretically.
 \\
-\solution The theoretical PDF of $X$ is plotted in Fig. \ref{fig:theory_gauss_pdf} using the code below
+\solution The theoretical PDF and CDF of $X$ is plotted in Fig. \ref{fig:theory_gauss_pdf} using the code below
 \begin{lstlisting}
 wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/q2/2p5.c
 \end{lstlisting}
 \begin{figure}[ht!]
-\centering
-\includegraphics[width=\columnwidth]{./figs/fig2.5.png}
-\caption{The theoretical PDF of $X$}
-\label{fig:theory_gauss_pdf}
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig2.5.png}
+    \caption{The theoretical PDF of $X$}
+    \label{fig:theory_gauss_pdf}
+\end{figure}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig2.5b.png}
+    \caption{The theoretical CDF of $X$}
+    \label{fig:theory_gauss_cdf}
 \end{figure}
 Using given equation \eqref{eq:expectation},
 \begin{align}
