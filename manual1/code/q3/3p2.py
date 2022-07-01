@@ -4,7 +4,7 @@ import pandas as pd
 
 pts = 30
 n = 10**6
-V = np.fromfile("oth.dat", dtype='double', count= n, sep='', offset=0)
+V = np.fromfile("exp.dat", dtype='double', count= n, sep='', offset=0)
 
 x = np.linspace(-2,10,pts)
 F = [] 
