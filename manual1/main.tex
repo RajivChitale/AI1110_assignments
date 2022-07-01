@@ -143,11 +143,10 @@ columns=fullflexible
 \renewcommand{\thefigure}{\theenumi}
 \renewcommand{\thetable}{\theenumi}
 
-
 \begin{abstract}
 This manual provides solutions to simple examples of generation of random numbers
 \end{abstract}
-%%
+%
 \section{Uniform Random Numbers}
 Let $U$ be a uniform random variable between 0 and 1.
 \begin{enumerate}[label=\thesection.\arabic*
@@ -164,9 +163,7 @@ Load the uni.dat file into python and plot the empirical CDF of $U$ using the sa
 \begin{align}
     F_{U}\brak{x} = \pr{U \le x}
 \end{align}
-\\
-\solution The empirical CDF of U is plotted in \ref{fig:uni_cdf}
-using the code below
+\solution The empirical CDF of U is plotted in \ref{fig:uni_cdf} using the code below
 \begin{lstlisting}
 wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/q1/1p2.py
 \end{lstlisting}
@@ -201,7 +198,7 @@ Find a theoretical expression for $F_{U}\brak{x}$.
     \end{cases}
     \label{eq:F_U}
 \end{align}
-\solution  The theoretical CDF of U is plotted in \ref{fig:theory_uni_cdf} using the code below
+The theoretical CDF of U is plotted in \ref{fig:theory_uni_cdf} using the code below
 \begin{lstlisting}
 wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/q1/1p3.py
 \end{lstlisting}
