@@ -213,13 +213,13 @@ wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1
 The mean of $U$ is defined as
 %
 \begin{equation}
-E\sbrak{U} = \frac{1}{N}\sum_{i=1}^{N}U_i
+\mean{U} = \frac{1}{N}\sum_{i=1}^{N}U_i
 \end{equation}
 %
 and its variance as
 %
 \begin{equation}
-    \text{var}\sbrak{U} = E\sbrak{\brak{U- E\sbrak{U}}^2} \end{equation}
+    \text{var}\sbrak{U} = \mean{\brak{U- \mean{U}}^2} \end{equation}
 Write a C program to  find the mean and variance of $U$. 
 \\
 \solution Run the following C file
@@ -228,7 +228,7 @@ wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1
 \end{lstlisting}
 Results were,
 \begin{align}
-E\sbrak{U} = 0.500007 \\
+\mean{U} = 0.500007 \\
 \text{var}\sbrak{U} = 0.083301 
 \end{align}
 %
@@ -236,25 +236,25 @@ E\sbrak{U} = 0.500007 \\
 \end{enumerate}
 %
 \begin{align}
-    E\sbrak{U^k} = \int_{-\infty}^{\infty}x^kdF_{U}\brak{x}
+    \mean{U^k} = \int_{-\infty}^{\infty}x^kdF_{U}\brak{x}
     \label{eq:expectation}
 \end{align}
 \solution Taking k as 1,
 \begin{align}
-    E\sbrak{U} = \int_{-\infty}^{\infty}xdF_{U}\brak{x}
+    \mean{U} = \int_{-\infty}^{\infty}xdF_{U}\brak{x}
 \end{align}
 Using expression \eqref{eq:F_U}, this simplifies to
 \begin{align}
-    E\sbrak{U} &= \int_{0}^{1}xdx \\
-    E\sbrak{U} &= \frac{x^2}{2} \Big|_0^1 \\
-    E\sbrak{U} &= 0.5
+    \mean{U} &= \int_{0}^{1}xdx \\
+    \mean{U} &= \frac{x^2}{2} \Big|_0^1 \\
+    \mean{U} &= 0.5
 \end{align}
 To calculate variance we take k=2
 \begin{align}
-    \text{var}\sbrak{U} &= E\sbrak{\brak{U- E\sbrak{U}}^2} \\
-    \text{var}\sbrak{U} &= E\sbrak{\brak{U-0.5}^2} \\
-    \text{var}\sbrak{U} &= E\sbrak{U^2 - U + 0.25}  \\
-    \text{var}\sbrak{U} &= E\sbrak{U^2} - E\sbrak{U} + E\sbrak{0.25}  \\
+    \text{var}\sbrak{U} &= \mean{\brak{U- \mean{U}}^2} \\
+    \text{var}\sbrak{U} &= \mean{\brak{U-0.5}^2} \\
+    \text{var}\sbrak{U} &= \mean{U^2 - U + 0.25}  \\
+    \text{var}\sbrak{U} &= \mean{U^2} - \mean{U} + \mean{0.25}  \\
     \text{var}\sbrak{U} &= \int_{-\infty}^{\infty}x^2dF_{U}\brak{x} - 0.5 + 0.25  \\
     \text{var}\sbrak{U} &= \int_{0}^{1}x^2dx - \frac{1}{4}  \\   
      \text{var}\sbrak{U} &= \frac{x^3}{3} \Big|_0^1 - \frac{1}{4}  \\    
@@ -326,7 +326,7 @@ wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1
 \end{lstlisting}
 Results were, 
 \begin{align}
-E\sbrak{X}  = 0.000294 \\
+\mean{X}  = 0.000294 \\
 \text{var}\sbrak{X}  = 0.999560
 \end{align}
 %
@@ -354,25 +354,25 @@ wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1
 \end{figure}
 Using given equation \eqref{eq:expectation},
 \begin{align}
-    E\sbrak{X^k} &= \int_{-\infty}^{\infty}x^kdF_{X}\brak{x} \\
-    E\sbrak{X} &= \int_{-\infty}^{\infty}x dF_{X}\brak{x} 
+    \mean{X^k} &= \int_{-\infty}^{\infty}x^kdF_{X}\brak{x} \\
+    \mean{X} &= \int_{-\infty}^{\infty}x dF_{X}\brak{x} 
 \end{align}
 Using given equation \eqref{eq:pdf_cdf},
 \begin{align}
-    E\sbrak{X} &= \int_{-\infty}^{\infty}x p_{X}\brak{x} dx \\
-    E\sbrak{X} &= \int_{-\infty}^{\infty}x
+    \mean{X} &= \int_{-\infty}^{\infty}x p_{X}\brak{x} dx \\
+    \mean{X} &= \int_{-\infty}^{\infty}x
     \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}} dx    
 \end{align}
 Taking $t = \frac{x^2}{2}$
 \begin{align}
-     E\sbrak{X} &= \int_{\infty}^{\infty}
+     \mean{X} &= \int_{\infty}^{\infty}
     \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{t}{2}} dt \\
-     E\sbrak{X} &= 0
+     \mean{X} &= 0
 \end{align}
 To calculate variance we take k=2
 \begin{align}
-    \text{var}\sbrak{X} &= E\sbrak{\brak{X- E\sbrak{X}}^2} \\
-    \text{var}\sbrak{X} &= E\sbrak{X^2} \\
+    \text{var}\sbrak{X} &= \mean{\brak{X- \mean{X}}^2} \\
+    \text{var}\sbrak{X} &= \mean{X^2} \\
     \text{var}\sbrak{X} &= \int_{-\infty}^{\infty}x^2dF_{X}\brak{x} \\
     \text{var}\sbrak{X} &= \int_{-\infty}^{\infty}x^2 p_{X}\brak{x} dx \\
     \text{var}\sbrak{X} &= \int_{-\infty}^{\infty}x^2
@@ -456,7 +456,172 @@ wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1
 \caption{The CDF of $V$}
 \label{fig:theory_misc_cdf}
 \end{figure}
+\end{enumerate}
+%
+%
+\section{Triangular Distribution}
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
+%
+\item Generate 
+	\begin{align}
+		T = U_1+U_2
+	\end{align}
+\item Find the CDF of $T$.
+\item Find the PDF of $T$.
+\item Find the theoretical expressions for the PDF and CDF of $T$.
+\item Verify your results through a plot. 
+\end{enumerate}
+\section{Maximul Likelihood}
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
+\item Generate 
+\begin{equation}
+Y = AX+N,
+\end{equation}
+		where $A = 5 \text{ dB}, X \i \cbrak{1,-1}$,  is Bernoulli and $N \sim \gauss{0}{1}$.
+	\item Plot $Y$.
+	\item Guess how to estimate $X$ from $Y$.
+\item
+\label{ml-ch4_sim}
+Find 
+\begin{equation}
+	P_{e|0} = \pr{\hat{X} = -1|X=1}
+\end{equation}
+and 
+\begin{equation}
+	P_{e|1} = \pr{\hat{X} = 1|X=-1}
+\end{equation}
+%
+\item Find $P_e$.
+%
+\item
+Verify by plotting  the theoretical $P_e$.  
+		\end{enumerate}
+\section{Gaussian to Other}
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
+\item
+Let $X_1 \sim  \gauss{0}{1}$ and $X_2 \sim  \gauss{0}{1}$. Plot the CDF and PDF of
+%
+\begin{equation}
+V = X_1^2 + X_2^2
+\end{equation}
+%
+%
+%
+\item
+If
+%
+\begin{equation}
+F_{V}(x) = 
+\begin{cases}
+1 - e^{-\alpha x} & x \geq 0 \\
+0 & x < 0,
+\end{cases}
+\end{equation}
+%
+find $\alpha$.
+%
+\item
+\label{ch3_raleigh_sim}
+Plot the CDF and PDf of
+%
+\begin{equation}
+A = \sqrt{V}
+\end{equation}
 %
 \end{enumerate}
+\section{Conditional Probability}
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
+\item
+\item
+\label{ch4_sim}
+Plot 
+\begin{equation}
+P_e = \pr{\hat{X} = -1|X=1}
+\end{equation}
+%
+for 
+\begin{equation}
+Y = AX+N,
+\end{equation}
+where $A$ is Raleigh with $\mean{A^2} = \gamma, N \sim \gauss{0}{1}, X \in \brak{-1,1}$ for $0 \le \gamma \le 10$ dB.
+%
+\item
+Assuming that $N$ is a constant, find an expression for $P_e$.  Call this $P_e(N)$
+%
+\item
+%
+\label{ch4_anal}
+For a function $g$,
+\begin{equation}
+\mean{g(X)} = \int_{-\infty}^{\infty}g(x)p_{X}(x)\, dx
+\end{equation}
+%
+Find $P_e = \mean{P_e(N)}$.
+%
+\item
+Plot $P_e$ in problems \ref{ch4_sim} and \ref{ch4_anal} on the same graph w.r.t $\gamma$.  Comment.
+		\end{enumerate}
+\section{Two Dimensions}
+Let 
+\begin{equation}
+\mbf{y} = A\mbf{x} + \mbf{n},
+\end{equation}
+where 
+\begin{align}
+x &\in \brak{\mbf{s}_0,\mbf{s}_1}, 
+\mbf{s}_0 = 
+\begin{pmatrix}
+1 
+\\
+0
+\end{pmatrix},
+\mbf{s}_1 = 
+\begin{pmatrix}
+0 
+\\
+1
+\end{pmatrix}
+\\
+\mbf{n} &= 
+\begin{pmatrix}
+n_1
+\\
+n_2
+\end{pmatrix},
+n_1,n_2 \sim \gauss{0}{1}.
+\end{align}
+%
+\begin{enumerate}[label=\thesection.\arabic*
+,ref=\thesection.\theenumi]
+%%
+\item
+\label{ch5_fsk}
+Plot 
+%
+\begin{equation}
+\mbf{y}|\mbf{s}_0 \text{ and } \mbf{y}|\mbf{s}_1
+\end{equation}
+%
+on the same graph using a scatter plot.
+%
+\item
+For the above problem, find a decision rule for detecting the symbols $\mbf{s}_0 $ and $\mbf{s}_1$.
+%
+\item
+Plot 
+\begin{equation} 
+P_e = \pr{\hat{\mbf{x}} = \mbf{s}_1|\mbf{x} = \mbf{s}_0}
+\end{equation}
+with respect to the SNR from 0 to 10 dB.
+%
+\item
+Obtain an expression for $P_e$. Verify this by comparing the theory and simulation plots on the same graph.
+%\end{enumerate}
+\end{enumerate}
+%
 \end{document}
 
