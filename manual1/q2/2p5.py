@@ -22,15 +22,29 @@ p_theory = []
 for i in range(0,pts):
 	p_theory.append(math.exp(-(x[i]**2)/2) / math.sqrt(2*math.pi))	
 
-plt.scatter(x.T[0:(pts-1)], p, color="blue",label="Emperical PDF" )   #plotting the emperical CDF
-plt.plot(x.T, p_theory, color="orange", label="Experimental PDF" ) #plotting the experimental CDF
+dx = (x[pts-1]-x[0])/pts
+F_theory = np.cumsum(p_theory)* dx
+
+plt.scatter(x.T[0:(pts-1)], p, color="blue",label="Empirical PDF" )   #plotting the empirical CDF
+plt.plot(x.T, p_theory, color="orange", label="Theoretical PDF" ) #plotting the experimental CDF
 plt.grid()
 plt.minorticks_on()
 plt.xlabel("x")
 plt.ylabel("$p_X(x)$")
-plt.title("PDF of X")
+plt.title("Theoretical PDF of X")
 plt.legend(loc="best")
 plt.savefig("../figs/fig2.5.png")
+plt.show()
+
+plt.scatter(x.T, F, color="blue",label="Empirical CDF" )   #plotting the empirical CDF
+plt.plot(x.T, F_theory, color="orange", label="Theoretical CDF" ) #plotting the experimental CDF
+plt.grid()
+plt.minorticks_on()
+plt.xlabel("x")
+plt.ylabel("$F_X(x)$")
+plt.title("Theoretical CDF of X")
+plt.legend(loc="best")
+plt.savefig("../figs/fig2.5b.png")
 plt.show()
 
 
