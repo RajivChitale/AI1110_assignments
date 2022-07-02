@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+//contains functions to find mean and variance, and to load data from a f.dat file
+
 void fillArray(char* filename, double* X, long n);
 double mean(double* X,long n);
 double var(double* X,long n);

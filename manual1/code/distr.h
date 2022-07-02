@@ -3,10 +3,15 @@
 #include<time.h>
 #include<math.h>
 
+// needs -lm flag
+//Contains functions to produce distributions and store them in a .dat file
+
 double sampleGen();
 void fillFile(char* filename, double* X, long n);
 void uniform(char* filename, long n);
 void gaussian(char* filename, long n);
+void triangular(char* filename, long n);
+
 
 double sampleGen()
 {
@@ -52,7 +57,7 @@ void gaussian(char* filename, long n)
 	return;
 }
 
-void exponential(char* filename, long n)
+void exponential_complement(char* filename, long n)
 {
 	srand(time(NULL));
 	double* V = (double*) malloc(n*sizeof(double));
@@ -62,5 +67,18 @@ void exponential(char* filename, long n)
 	}
 	fillFile(filename, V, n);
 	free(V);
+	return;
+}
+
+void triangular(char* filename, long n)
+{
+	srand(time(NULL));
+	double* U = (double*) malloc(n*sizeof(double));
+	for(long i=0; i<n;i++)
+	{
+		U[i]= sampleGen() + sampleGen();
+	}
+	fillFile(filename, U, n);
+	free(U);
 	return;
 }
