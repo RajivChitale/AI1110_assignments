@@ -16,7 +16,7 @@ plt.plot(x.T, F, color="blue" )#plotting the CDF
 plt.grid()
 plt.minorticks_on()
 plt.xlabel("x")
-plt.ylabel("$F_U(x)$")
+plt.ylabel("$F_T(x)$")
 plt.title("Empirical CDF of T")
 plt.savefig("../../figs/fig4.2.png")
 plt.show()

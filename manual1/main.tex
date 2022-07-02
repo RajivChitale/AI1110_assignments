@@ -334,7 +334,7 @@ p_{X}\brak{x} = \frac{1}{\sqrt{2\pi}}\exp\brak{-\frac{x^2}{2}}, -\infty < x < \i
 \end{align}
 repeat the above exercise theoretically.
 \\
-\solution The theoretical PDF and CDF of $X$ is plotted in Fig. \ref{fig:theory_gauss_pdf} using the code below
+\solution The theoretical PDF and CDF of $X$ is plotted in Fig. \ref{fig:theory_gauss_pdf} and Fig.  \ref{fig:theory_gauss_cdf}  using the code below
 \begin{lstlisting}
 wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q2/2p5.c
 \end{lstlisting}
@@ -540,7 +540,7 @@ We integrate PDF to find CDF,
     	F_T\brak{0} + \int_{0}^{x} z dz & 0 \le x < 1 \\
    		F_T\brak{1} + \int_{1}^{x} \brak{2-z} dz & 1 \le x < 2 \\
     	F_T\brak{2} + \int_{2}^{x} 0 dz & 2 \le x 
-    	\end{cases} 
+    	\end{cases} \\
 	F_T\brak{x} &=
     	\begin{cases} 
     	0 & x \le 0 \\
@@ -549,8 +549,23 @@ We integrate PDF to find CDF,
     	1 & 2 \le x 
     	\end{cases} 
 \end{align}
-\item Verify your results through a plot. 
-%
+\item Verify your results through a plot. \\
+\solution The theoretical PDF and CDF of $X$ is plotted in Fig. \ref{fig:theory_tri_pdf} and Fig.  \ref{fig:theory_tri_cdf}  using the code below
+\begin{lstlisting}
+wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q4/4p5.c
+\end{lstlisting}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig4.5.png}
+    \caption{The theoretical PDF of $T$}
+    \label{fig:theory_tri_pdf}
+\end{figure}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig4.5b.png}
+    \caption{The theoretical CDF of $T$}
+    \label{fig:theory_tri_cdf}
+\end{figure}
 %
 \end{enumerate}
 \section{Maximul Likelihood}
