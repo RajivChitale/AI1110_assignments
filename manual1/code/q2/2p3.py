@@ -16,8 +16,6 @@ for i in range(0,pts):
 p = []
 for i in range(0,pts-1):
 	p.append( (F[i+1] - F[i])/ (x[i+1]-x[i]) )
-	
-	
 
 plt.plot(x.T[0:(pts-1)], p, color="blue" )#plotting the CDF
 plt.grid()

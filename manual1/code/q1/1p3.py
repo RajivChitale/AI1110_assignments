@@ -7,20 +7,22 @@ n = 10**6
 U = np.fromfile("uni.dat", dtype='double', count= n, sep='', offset=0)
 
 x = np.linspace(-2,2,pts)
-F = [] 
 
+F = [] 
 for i in range(0,pts):
 	F_n = np.count_nonzero(U < x[i]) #checking probability condition
 	F.append(F_n/n) #storing the probability values in a list
 
-F_theory = []
-for i in range(0,pts):
-	if(x[i]<0):
-		F_theory.append(0)  
-	elif(x[i]>1):
-		F_theory.append(1)  
+def gen_F_theory(xi):
+	if(xi<0):
+		return 0.0
+	elif(xi>1):
+		return 1.0
 	else:
-		F_theory.append(x[i]) 
+		return xi
+
+vecgen_F_theory = np.vectorize(gen_F_theory)
+F_theory = vecgen_F_theory(x)
 
 plt.scatter(x.T, F, color="blue", label="Empirical CDF" )#plotting the experimental CDF
 plt.plot(x.T, F_theory, color="orange", label="Theoretical CDF" )#plotting the theoretical CDF
