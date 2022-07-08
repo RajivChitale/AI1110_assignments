@@ -568,18 +568,53 @@ wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1
     \caption{The theoretical CDF of $T$}
     \label{fig:theory_tri_cdf}
 \end{figure}
-%
 \end{enumerate}
-\section{Maximul Likelihood}
+%
+\section{Maximum Likelihood}
 \begin{enumerate}[label=\thesection.\arabic*
 ,ref=\thesection.\theenumi]
+\item Generate equiprobable $X \in \cbrak{1,-1}$.
+\\
+\solution Download the following c code. Run it to generate samples of $X$.
+\begin{lstlisting}
+wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q5/5p1.c
+\end{lstlisting}
 \item Generate 
 \begin{equation}
 Y = AX+N,
 \end{equation}
-		where $A = 5 \text{ dB}, X \i \cbrak{1,-1}$,  is Bernoulli and $N \sim \gauss{0}{1}$.
-	\item Plot $Y$.
-	\item Guess how to estimate $X$ from $Y$.
+		where $A = 5$ dB,  and $N \sim \gauss{0}{1}$.
+\\
+\solution Download the following c code. Run it to generate samples of $Y$.
+\begin{lstlisting}
+wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q5/5p2.c
+\end{lstlisting}
+\item Plot $Y$ using a scatter plot.
+\\
+\solution
+The scatter plot \ref{fig:scatter} is generated using the code below
+\begin{lstlisting}
+wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q1/1p3.py
+\end{lstlisting}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig5.3b.png}
+    \caption{The scatter plot of $Y$ against $X$}
+    \label{fig:scatter}
+\end{figure}
+%
+\item Guess how to estimate $X$ from $Y$.
+\\
+\solution
+From the scatter plot we can see that the majority of $Y$ are postiive $X$ is 1, and negative $X$ is -1. We can estimate, 
+\begin{align}
+    \hat{X} =
+    \begin{cases}
+    -1 & Y<0\\
+    1 & Y\ge0
+    \end{cases}
+\end{align}
+%
 \item
 \label{ml-ch4_sim}
 Find 
@@ -590,12 +625,232 @@ and
 \begin{equation}
 	P_{e|1} = \pr{\hat{X} = 1|X=-1}
 \end{equation}
+\solution The following c code finds empirical values for $P_{e|0}$ and $P_{e|1}$.
+\begin{lstlisting}
+wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q5/5p5.py
+\end{lstlisting}
+The experimental values are
+\begin{align}
+    P_{e|0} = 0.31068 \\
+    P_{e|1} = 0.30915
+\end{align}
 %
-\item Find $P_e$.
+\item Find $P_e$ assuming that $X$ has equiprobable symbols.
+\\ 
+\solution The empirical value of $P_e$ is
+\begin{align}
+    P_e &= P_X\brak{1} \times P_{e|0} + P_X\brak{-1} \times P_{e|1} \\
+ 	P_e &= \frak{1}{2} \times 0.31068  + \frak{1}{2} \times 0.30915 \\
+ 	P_e &= 0.30992
+\end{align}
+The theoretical value of $P_e$ is found below
+\begin{align}
+\begin{split}
+    P_e &= P_X\brak{1} \times \pr{\hat{X} = -1|X=1} \\
+    &+ P_X\brak{-1} \times \pr{\hat{X} = 1|X= -1}
+\end{split} 
+\end{align}
+\begin{align}
+\begin{split}
+    P_e &= \frac{1}{2} \times \pr{Y < 0|X=1} \\
+    &+ \frac{1}{2}\times \pr{Y>0|X= -1} 
+\end{split} \\
+\begin{split}
+    P_e &= \frac{1}{2} \times \pr{A + N < 0} \\
+    &+ \frac{1}{2}\times \pr{-A + N > 0}
+\end{split} \\
+    P_e &= \frac{1}{2} \times Q\brak{A} 
+    + \frac{1}{2}\times Q\brak{A} \\
+    P_e &= Q\brak{A} 
+\end{align}
 %
 \item
-Verify by plotting  the theoretical $P_e$.  
-		\end{enumerate}
+Verify by plotting  the theoretical $P_e$ with respect to $A$ from 0 to 10 dB.  
+\\
+\solution
+The plot of theoretical and empirical $P_e$ is \ref{fig:pe}. The semilog graph of the same is \ref{fig:pe_semilog}. They are generated using the code below
+\begin{lstlisting}
+wget https://github.com/cs21btech11051Rajiv/AI1110_assignments/blob/main/manual1/code/q5/5p7.py
+\end{lstlisting}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig5.7.png}
+    \caption{The plot of theoretical and empirical $P_e$ }
+    \label{fig:pe}
+\end{figure}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=\columnwidth]{./figs/fig5.7b.png}
+    \caption{The semilog plot of theoretical and empirical $P_e$ }
+    \label{fig:pe}
+\end{figure}
+%
+\item Now, consider a threshold $\delta$  while estimating $X$ from $Y$. Find the value of $\delta$ that maximizes the theoretical $P_e$.
+\\
+\solution 
+Let us consider some threshold $\delta$
+\begin{align}
+    \hat{X} =
+    \begin{cases}
+    -1 & Y< \delta\\
+    1 & Y>\delta
+    \end{cases}
+\end{align}
+%
+The theoretical $P_e$
+\begin{align}
+\begin{split}
+    P_e &= P_X\brak{1} \times \pr{\hat{X} = -1|X=1} \\
+    &+ P_X\brak{-1} \times \pr{\hat{X} = 1|X= -1}
+\end{split} 
+\end{align}
+\begin{align}
+\begin{split}
+    P_e &= \frac{1}{2} \times \pr{Y < \delta|X=1} \\
+    &+ \frac{1}{2}\times \pr{Y>\delta|X= -1} 
+\end{split} \\
+\begin{split}
+    P_e &= \frac{1}{2} \times \pr{A + N < \delta} \\
+    &+ \frac{1}{2}\times \pr{-A + N > \delta} 
+\end{split} \\
+    P_e &= \frac{1}{2} \sbrak{ F_N\brak{\delta-A} 
+    + 1 - F_N\brak{A+\delta}  } \label{eq:Pe_threshold} 
+\end{align}
+%
+To find maximum $P_e$, we can differenciate \eqref{eq:Pe_threshold}
+\begin{align}
+	0 &= \frac{dP_e}{d\delta} \\
+	0 &= \frac{1}{2} \sbrak{ p_N\brak{\delta-A} -p_N\brak{A+\delta} }
+\end{align}
+\begin{align}
+	p_N\brak{\delta-A}  &= p_N\brak{A+\delta} \\
+	\frac{ \exp{ \brak{- \frac{\brak{\delta-A}^2}{2} } }}  {\sqrt{2\pi}} &= 
+	\frac{ \exp{ \brak{- \frac{\brak{A+\delta}^2}{2} } }}  {\sqrt{2\pi}} \\
+	\brak{\delta-A}^2 &= \brak{\delta+A}^2 \\
+	A = 0 \text{ or } \delta &= 0 
+\end{align}
+We discard the first case. Thus $\delta =0 $
+%
+\item Repeat the above exercise when 
+	\begin{align}
+		p_{X}(1) = p %changed 0 to 1
+	\end{align}
+\\
+\solution
+The theoretical $P_e$
+\begin{align}
+\begin{split}
+    P_e &= P_X\brak{1} \times \pr{\hat{X} = -1|X=1} \\
+    &+ P_X\brak{-1} \times \pr{\hat{X} = 1|X= -1}
+\end{split} 
+\end{align}
+\begin{align}
+\begin{split}
+    P_e &= \brak{p} \pr{Y < \delta|X=1} \\
+    &+ \brak{1-p}  \pr{Y>\delta|X= -1} 
+\end{split} \\
+\begin{split}
+    P_e &= \brak{p} \pr{A + N < \delta} \\
+    &+ \brak{1-p} \pr{-A + N > \delta} 
+\end{split} \\
+\begin{split}
+    P_e &= \brak{p} F_N\brak{\delta-A} \\
+    &+ \brak{1-p}\sbrak{1 - F_N\brak{A+\delta}  } \label{eq:Pe_threshold2} 
+\end{split}
+\end{align}
+%
+To find maximum $P_e$, we can differenciate \eqref{eq:Pe_threshold2}
+\begin{align}
+	0 &= \frac{dP_e}{d\delta} \\
+	0 &= \brak{p} p_N\brak{\delta-A} \\
+    &+ \brak{1-p}\sbrak{-p_N\brak{A+\delta}  }
+\end{align}
+\begin{align}
+	\brak{p} p_N\brak{\delta-A}  &= \brak{1-p}  p_N\brak{A+\delta} \\
+	\frac{ \brak{p} \exp{\brak{ -\frac{\brak{\delta-A}^2}{2} } }}  {\sqrt{2\pi}} &= 
+	\frac{ \brak{1-p} \exp{\brak{ -\frac{\brak{A+\delta}^2}{2} } }}  {\sqrt{2\pi}} \\
+	\ln{\brak{p}} - \frac{1}{2} \brak{\delta-A}^2 &= \ln{\brak{1-p}} -\frac{1}{2} \brak{\delta+A}^2 
+\end{align}
+\begin{align}
+	\frac{1}{2} \brak{\delta+A}^2 - \frac{1}{2} \brak{\delta-A}^2 &=  \ln{\brak{\frac{1-p}{p} } }  
+\end{align}
+The required threshold value is
+\begin{align}
+	\delta  &= \frac{1}{2A} \ln{\brak{\frac{1-p}{p} } } 
+\end{align}
+%
+\item Repeat the above exercise using the MAP criterion.
+\\
+\solution We need to maximize $p_{X|Y}\brak{x|y}$. We can use Bayes' theorem to represent it as
+\begin{align}
+	p_{X|Y}\brak{x|y} = \frac{ p_{Y|X}\brak{y|x} p_X\brak{x} }{ p_Y\brak{y} }
+\end{align}
+There are two discrete cases,
+\begin{align}
+	 p_{Y|X}\brak{y|x} = 
+	 \begin{cases}
+	 	p_{Y|X}\brak{y|1} & X = 1 \\
+	 	p_{Y|X}\brak{y|-1} & X = -1 
+	 \end{cases} \\
+	 p_{Y|X}\brak{y|x} = 
+	 \begin{cases}
+	 	p_N\brak{y-A}   & X = 1 \\ 
+	 	p_N\brak{y+A}  & X = -1 
+	 \end{cases} 
+\end{align}
+We can also calculate the denominator,
+\begin{align}
+	\begin{split}
+		p_Y\brak{y} &= p_X\brak{1} p_{Y|X}\brak{y|1}  \\
+		&+  p_X\brak{-1} p_{Y|X}\brak{y|-1} 
+	\end{split} \\
+	\begin{split}
+		p_Y\brak{y} &= \brak{p} p_N\brak{y-A} \\
+		&+ \brak{1-p} p_N\brak{y+A}
+	\end{split}	
+\end{align}
+We obtain,
+\begin{align}
+\begin{split}
+	 &p_{X|Y}\brak{x|y} = \\
+	  &\frac{\brak{p} p_N\brak{y-A} } {\brak{p} p_N\brak{y-A} + \brak{1-p}p_N\brak{y+A} } , X = 1\\
+	 &\frac{\brak{1-p} p_N\brak{y+A} } {\brak{p} p_N\brak{y-A} + \brak{1-p}p_N\brak{y+A} } , X = -1
+\end{split} 
+\end{align} 
+\begin{align}
+	 p_{X|Y}\brak{x|y} = 
+	 \begin{cases}
+	  \frac{\brak{p}} {\brak{p} + \brak{1-p} \frac{p_N\brak{y+A}}{p_N\brak{y-A}}} & X = 1\\ \\
+	 \frac{\brak{1-p}} { \brak{p} \frac{p_N\brak{y-A}}{p_N\brak{y+A}} + \brak{1 p}} & X = -1
+	 \end{cases}
+\end{align} 
+On simplifying
+\begin{align}
+	  p_{X|Y}\brak{x|y} = 
+	 \begin{cases}
+	 \frac{\brak{p}} {\brak{p} + \brak{1-p} e^{-2yA} } & X = 1\\ \\
+	 \frac{\brak{1-p} } { \brak{p} e^{2yA} + \brak{1-p} } & X = -1
+	 \end{cases}
+\end{align}
+For the first value to be maximum,
+\begin{align}
+	\frac{\brak{p}} {\brak{p} + \brak{1-p} e^{-2yA} } 
+	&> \frac{\brak{1-p} } { \brak{p} e^{2yA} + \brak{1-p} } \\
+	\brak{p}^2 e^{2yA} &> \brak{1-p}^2 e^{-2yA} \\
+	e^{2yA} &> \frac{1-p}{p} \\
+	y &> \frac{1}{2A} \ln{\brak{ \frac{1-p}{p} }}
+\end{align}
+\begin{align}
+\begin{split}
+	 \hat{X}_{MAP} = 
+	 \begin{cases}
+	 \frac{\brak{p}} {\brak{p} + \brak{1-p} e^{-2yA} } & y > \frac{1}{2A} \ln{\brak{ \frac{1-p}{p} }}\\
+	 \frac{\brak{1-p} } { \brak{p} e^{2yA} + \brak{1-p} } & y \le \frac{1}{2A} \ln{\brak{ \frac{1-p}{p} }}
+	 \end{cases}
+\end{split}
+\end{align}
+\end{enumerate}
+%		
 \section{Gaussian to Other}
 \begin{enumerate}[label=\thesection.\arabic*
 ,ref=\thesection.\theenumi]
@@ -605,7 +860,54 @@ Let $X_1 \sim  \gauss{0}{1}$ and $X_2 \sim  \gauss{0}{1}$. Plot the CDF and PDF 
 \begin{equation}
 V = X_1^2 + X_2^2
 \end{equation}
-%
+\\
+\solution First we transform $X_1$ and $X_2$ to polar form as  $R \in [0, \infty)$ and $\Theta \in [0, 2\pi)$.
+\begin{align}
+	X_1 = R \cos{\Theta} \\
+	X_2 = R \sin{\Theta}
+\end{align}
+The transformation is carried out using the following Jacobian Matrix.
+\begin{align}
+	\vec{J} &= \myvec{\frac{\partial X_1}{\partial R} &
+					 \frac{\partial X_2}{\partial R} \\
+					 \frac {\partial X_1}{\partial \Theta} &
+					 \frac{\partial X_2}{\partial \Theta} }\\ 
+	\vec{J} &= \myvec{\cos{\theta} & \sin{\theta} \\
+					  -r\sin{\theta} & r\cos{\theta}} \\
+	\abs{\vec{J}} &= r
+	\label{eq:jacobian}
+\end{align}
+The equation for transformation is as follows
+\begin{align}
+	p_{R, \Theta}\brak{r, \theta} &= \abs{\vec{J}}p_{X_1, X_2}\brak{x_1, x_2}
+\end{align}
+As $X_1$ and $X_2$ are independent,
+\begin{align}
+	 p_{R, \Theta} &= \abs{\vec{J}} p_{X_1}\brak{x_1}p_{X_2}\brak{x_2}  \\
+	 p_{R, \Theta} &= r \frac{ \exp{ \brak{-\frac{x_1^2}{2}} } } {\sqrt{2\pi}}  
+	 \frac{ \exp{ \brak{-\frac{x_2^2}{2}} } } {\sqrt{2\pi}} \\
+	 p_{R, \Theta} &= \frac{r}{2\pi}\exp{\brak{-\frac{x_1^2 + x_2^2}{2}}} \\
+	 p_{R, \Theta} &= \frac{r}{2\pi}\exp{\brak{-\frac{r^2}{2}}}
+\end{align}
+As $R$ and $\Theta$ are independent,
+\begin{align}
+	p_R\brak{r} p_\Theta \brak{\theta} &= p_{R, \Theta}\brak{r, \theta} \\
+	\therefore p_R\brak{r} p_\Theta \brak{\theta} &= \frac{r}{2\pi}  \exp{\brak{-\frac{r^2}{2}}} \\
+	\int_0^{2 \pi} p_R\brak{r} p_\Theta \brak{\theta} d\theta &= 
+	\int_0^{2 \pi} \frac{r}{2\pi}  \exp{\brak{-\frac{r^2}{2}}} d\theta
+\end{align}
+We obtain PDF and CDF of R
+\begin{align}
+	p_R\brak{r} &= r \exp{\brak{-\frac{r^2}{2}}} & r\ge0 \\
+	F_R\brak{r} &= \int_0^{r} t \exp{\brak{-\frac{t^2}{2}}} dt \\
+	F_R\brak{r} &=  - \exp{\brak{-\frac{r^2}{2}}} + 1  
+\end{align}
+These lead to PDF and CDF of Y 
+\begin{align}
+	Y = R^2 \\
+	R = \sqrt{Y} \\
+	F_Y\brak{y} = F_R\brak{\sqrt{y}} \\
+\end{align}
 %
 %
 \item
@@ -634,7 +936,6 @@ A = \sqrt{V}
 \begin{enumerate}[label=\thesection.\arabic*
 ,ref=\thesection.\theenumi]
 \item
-\item
 \label{ch4_sim}
 Plot 
 \begin{equation}
@@ -645,7 +946,7 @@ for
 \begin{equation}
 Y = AX+N,
 \end{equation}
-where $A$ is Raleigh with $\mean{A^2} = \gamma, N \sim \gauss{0}{1}, X \in \brak{-1,1}$ for $0 \le \gamma \le 10$ dB.
+where $A$ is Raleigh with $E\sbrak{A^2} = \gamma, N \sim \gauss{0}{1}, X \in \brak{-1,1}$ for $0 \le \gamma \le 10$ dB.
 %
 \item
 Assuming that $N$ is a constant, find an expression for $P_e$.  Call this $P_e(N)$
@@ -655,10 +956,10 @@ Assuming that $N$ is a constant, find an expression for $P_e$.  Call this $P_e(N
 \label{ch4_anal}
 For a function $g$,
 \begin{equation}
-\mean{g(X)} = \int_{-\infty}^{\infty}g(x)p_{X}(x)\, dx
+E\sbrak{g(X)} = \int_{-\infty}^{\infty}g(x)p_{X}(x)\, dx
 \end{equation}
 %
-Find $P_e = \mean{P_e(N)}$.
+Find $P_e = E\sbrak{P_e(N)}$.
 %
 \item
 Plot $P_e$ in problems \ref{ch4_sim} and \ref{ch4_anal} on the same graph w.r.t $\gamma$.  Comment.
@@ -718,8 +1019,6 @@ with respect to the SNR from 0 to 10 dB.
 %
 \item
 Obtain an expression for $P_e$. Verify this by comparing the theory and simulation plots on the same graph.
-%\end{enumerate}
-\end{enumerate}
 %
-\end{document}
+		\end{enumerate}
 \end{document}
