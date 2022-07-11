@@ -3,6 +3,6 @@
 int main()
 {
 	long n = 1000000;
-	gaussian("gau.dat", n);
+	gaussianFill("gau.dat", n);
 	return 0;
 }

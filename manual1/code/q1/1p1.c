@@ -3,6 +3,6 @@
 int main()
 {
 	long n = 1000000;
-	uniform("uni.dat", n);
+	uniformFill("uni.dat", n);
 	return 0;
 }

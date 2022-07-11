@@ -5,22 +5,67 @@
 
 //functions to find mean and variance, and to load data from a f.dat file
 void fillArray(char* filename, double* X, long n);
+void storeArray(char* filename, double* X, long n);
+void fillFile(double(*distr)(), char* filename, long n);
 double mean(double* X,long n);
 double var(double* X,long n);
+
 //Contains functions to produce distributions and store them in a .dat file
-double sampleGen();
-void fillFile(char* filename, double* X, long n);
-void uniform(char* filename, long n);
-void gaussian(char* filename, long n);
-void triangular(char* filename, long n);
+
+double uniform();
+void uniformFill(char* filename, long n);
+
+double gaussian();
+void gaussianFill(char* filename, long n);
+
+double custom1();
+void custom1Fill(char* filename, long n);
+
+double triangular();
+void triangularFill(char* filename, long n);
+
+double bernoulli();
+void bernoulliFill(char* filename, long n);
+
+double chisqr();
+void chisqrFill(char* filename, long n);
+
+double rayleigh();
+void rayleighFill(char* filename, long n);
+
 void noisy_bernoulli(char* filename, long n, double A, char* Xfilename, char* Nfilename);
-void chisqr(char* filename, long n, char* X1file, char* X2file);
 
 void fillArray(char* filename, double* X, long n)
 {
 	FILE* fp;
 	fp = fopen(filename, "r");
 	fread(X, sizeof(double), n, fp);
+	fclose(fp);
+	return;
+}
+
+//takes reference of function
+void fillFile(double (*distr) (), char* filename, long n)
+{
+	FILE* fp;
+	fp = fopen(filename, "w");
+	srand(time(NULL));
+	double* X = (double*) malloc(n*sizeof(double));
+	for(long i=0; i<n;i++)
+	{
+		X[i] =distr();
+	}
+	fwrite(X, sizeof(double), n, fp);
+	free(X);
+	fclose(fp);
+	return;
+}
+
+void storeArray(char* filename, double* X, long n)
+{
+	FILE* fp;
+	fp = fopen(filename, "w");
+	fwrite(X, sizeof(double), n, fp);
 	fclose(fp);
 	return;
 }
@@ -46,95 +91,92 @@ double var(double* X,long n)
 	return var;
 }
 
+//-------samples of distributions and filling arrays with them -------
 
-double sampleGen()
+//UNIFORM------------------------
+double uniform()
 {
 	return (double) rand()/RAND_MAX;
 }
 
-double bernoulliSampleGen()
+void uniformFill(char* filename, long n)
 {
-	return 2*(rand()%2) -1;  //returns -1 or 1
+	fillFile(uniform, filename , n);
 }
 
-void fillFile(char* filename, double* X, long n)
+//GAUSSIAN-----------------------
+double gaussian()
 {
-	FILE* fp;
-	fp = fopen(filename, "w");
-	fwrite(X, sizeof(double), n, fp);
-	fclose(fp);
-	return;
-}
-
-void uniform(char* filename, long n)
-{
-	srand(time(NULL));
-	double* U = (double*) malloc(n*sizeof(double));
-	for(long i=0; i<n;i++)
+	double g = -6;
+	for(int i=1; i<=12; i++)
 	{
-		U[i]= sampleGen();
+		g += uniform();
 	}
-	fillFile(filename, U, n);
-	free(U);
-	return;
+	return g;
 }
 
-// k is half the number of uniform distributions used
-void gaussian(char* filename, long n)
+void gaussianFill(char* filename, long n)
 {
-	srand(time(NULL));
-	double* X = (double*) malloc(n*sizeof(double));
-	for(long j=0; j<n; j++)
-	{
-		X[j]= -6;
-		for(int i=1; i<=12; i++)
-		{
-			X[j] += sampleGen();
-		}
-	}
-	fillFile(filename, X, n);
-	free(X);
-	return;
+	fillFile(gaussian, filename , n);
 }
 
-void exponential_complement(char* filename, long n)
+
+//CUSTOM1----------------------------
+double custom1()
 {
-	srand(time(NULL));
-	double* V = (double*) malloc(n*sizeof(double));
-	for(long i=0; i<n;i++)
-	{
-		V[i] = -2* log(1-sampleGen());
-	}
-	fillFile(filename, V, n);
-	free(V);
-	return;
+	return -2* log(1-uniform());
 }
 
-void triangular(char* filename, long n)
+void custom1Fill(char* filename, long n)
 {
-	srand(time(NULL));
-	double* T = (double*) malloc(n*sizeof(double));
-	for(long i=0; i<n;i++)
-	{
-		T[i]= sampleGen() + sampleGen();
-	}
-	fillFile(filename, T, n);
-	free(T);
-	return;
+	fillFile(custom1, filename , n);
 }
 
-void bernoulli(char* filename, long n)
+//TRIANGULAR ---------------------------------
+double triangular(char* filename, long n)
 {
-	srand(time(NULL));
-	double* B = (double*) malloc(n*sizeof(double));
-	
-	for(long i=0; i<n;i++)
-	{
-		B[i] = sampleGen() > 0.5 ? 1 : -1 ;
-	}
-	fillFile(filename, B, n);
-	free(B);
-	return;
+	return uniform() + uniform();
+}
+
+void triangularFill(char* filename, long n)
+{
+	fillFile(triangular, filename , n);
+}
+
+//BERNOULLI ---------------------------------
+double bernoulli(char* filename, long n)
+{
+	return uniform() > 0.5 ? 1 : -1 ;
+}
+
+void bernoulliFill(char* filename, long n)
+{
+	fillFile(bernoulli, filename , n);
+}
+
+
+//CHISQR -----------------------------------
+double chisqr()
+{
+	double x1 = gaussian();
+	double x2 = gaussian();
+	return x1 * x1 + x2 * x2;
+}
+
+void chisqrFill(char* filename, long n)
+{
+	fillFile(chisqr, filename , n);
+}
+
+//RAYLEIGH -----------------------------------
+double rayleigh(char* filename, long n, char* X1file, char* X2file)
+{
+	return sqrt(chisqr());
+}
+
+void rayleighFill(char* filename, long n)
+{
+	fillFile(rayleigh, filename , n);
 }
 
 //takes output filename, number of samples, files with data for X and N
@@ -151,7 +193,7 @@ void noisy_bernoulli(char* filename, long n, double A, char* Xfilename, char* Nf
 	{
 		Y[i]= A*X[i] + N[i];
 	}
-	fillFile(filename, Y, n);
+	storeArray(filename, Y, n);
 	
 	free(Y);
 	free(X);
@@ -159,23 +201,4 @@ void noisy_bernoulli(char* filename, long n, double A, char* Xfilename, char* Nf
 	return;
 }
 
-void chisqr(char* filename, long n, char* X1file, char* X2file)
-{
-	srand(time(NULL));
-	double* Y = (double*) malloc(n*sizeof(double));
-	double* X1 = (double*) malloc(n*sizeof(double));
-	double* X2 = (double*) malloc(n*sizeof(double));
-	fillArray(X1file, X1, n);
-	fillArray(X2file, X2, n);	
-	
-	for(long i=0; i<n;i++)
-	{
-		Y[i]= X1[i]*X1[i] + X2[i]*X2[i];
-	}
-	fillFile(filename, Y, n);
-	
-	free(Y);
-	free(X1);
-	free(X2);
-	return;
-}
+

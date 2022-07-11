@@ -3,6 +3,6 @@
 int main()
 {
 	long n = 1000000;
-	exponential_complement("exp.dat", n);
+	custom1Fill("exp.dat", n);
 	return 0;
 }

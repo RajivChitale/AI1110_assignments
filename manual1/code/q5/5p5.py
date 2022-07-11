@@ -33,6 +33,5 @@ p1 = p_e1(X,Y)
 print("Pr(X^ = -1 | X = 1) = ", p0)
 print("Pr(X^ = 1 | X = -1) = ", p1)
 print("Experimental Pe = ", 0.5*(p0 + p1) )
-print(np.sum(vec_e0(X,Y)) )
 
 

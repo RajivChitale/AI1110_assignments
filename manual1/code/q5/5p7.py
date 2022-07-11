@@ -26,7 +26,7 @@ plt.scatter(A, pe, color="blue", label="Empirical $P_e$" )#plotting the graph of
 plt.plot(A, pe_theory, color="orange", label="Theoretical $P_e$" )#plotting the theoretical of experimental Pe
 plt.grid()
 plt.minorticks_on()
-plt.xlabel("$A$")
+plt.xlabel("$A (Bell)$")
 plt.ylabel("$P_e$")
 plt.legend(loc="best")
 plt.title("$P_e$ vs $A$")
@@ -38,8 +38,8 @@ plt.semilogy(A, pe, '.' )#plotting the graph of experimental Pe
 plt.semilogy(A, pe_theory)#plotting the theoretical of experimental Pe
 plt.grid()
 plt.minorticks_on()
-plt.xlabel("$A$")
-plt.ylabel("$P_e$")
+plt.xlabel("$A (Bell)$")
+plt.ylabel("$log(P_e)$")
 plt.legend(["Empirical $P_e$", "Theoretical $P_e$"])
 plt.title("$log(P_e)$ vs $A$")
 plt.savefig("../../figs/fig5.7b.png")

@@ -3,6 +3,6 @@
 int main()
 {
 	long n = 1000000;
-	bernoulli("ber.dat", n);
+	bernoulliFill("ber.dat", n);
 	return 0;
 }
